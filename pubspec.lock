@@ -109,6 +109,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   http_parser:
     dependency: transitive
     description:
@@ -116,6 +121,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.0"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.3"
   lints:
     dependency: transitive
     description:
@@ -261,6 +273,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.2"
+  toast:
+    dependency: "direct main"
+    description:
+      name: toast
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.9"
   typed_data:
     dependency: transitive
     description:

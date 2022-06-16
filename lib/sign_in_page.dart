@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 import 'package:uhomebk_flutter/config/http_urls.dart';
 import 'package:uhomebk_flutter/config/seg_colors.dart';
 import 'package:uhomebk_flutter/http/http.dart';
@@ -16,11 +17,15 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
     return Scaffold(
         appBar: AppBar(title: const Text("打卡")),
         body: 
-          Center(
-            child: InkWell(child: _clipButton(), onTap: _signin),
+          Container(
+            margin: const EdgeInsets.all(0),
+            child: Center(
+              child: InkWell(child: _clipButton(), onTap: _signin),
+            ),
           )
       );
   }
@@ -58,10 +63,12 @@ class _SignInPageState extends State<SignInPage> {
       "latitude": 22.528235
     };
     Response response = await HttpUtils.postJson(kServer_sumbitCheckingin, params: params);
-    if (response.statusCode == 0) {
-         Map<String, dynamic> result = Map.from(response.data);
-         print(result);
-    } 
+      Map<String, dynamic> result = Map.from(response.data);
+      if (response.statusCode == 0) {
+         Toast.show(result.toString(), duration: Toast.lengthLong, gravity: Toast.bottom);
+      } else {
+         Toast.show(result.toString(), duration: 5, gravity: Toast.bottom);
+      }
   }
 
 }
