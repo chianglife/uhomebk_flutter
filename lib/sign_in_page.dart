@@ -67,7 +67,7 @@ class _SignInPageState extends State<SignInPage> {
       if (response.statusCode == 0) {
          Toast.show(result.toString(), duration: Toast.lengthLong, gravity: Toast.bottom);
       } else {
-         Toast.show(result.toString(), duration: 5, gravity: Toast.bottom);
+         Toast.show(result.toString(), duration: Toast.lengthLong, gravity: Toast.bottom);
       }
   }
 

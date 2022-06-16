@@ -22,7 +22,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var _username = '15019419141';
   // var _password = '5uYYGQmk';
-    var _password = 'Lxq123456~';
+    var _password = 'Lxq123456';
   late TextEditingController _usernameController;
   late TextEditingController _passwordcontroller;
   var dio = Dio();
