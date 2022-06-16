@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uhomebk_flutter/config/http_options.dart';
 import 'package:uhomebk_flutter/config/seg_colors.dart';
 import 'package:uhomebk_flutter/models/menu.dart';
+import 'package:uhomebk_flutter/pages/second_menu_page.dart';
 import 'package:uhomebk_flutter/widgets/image_default.dart';
 
 class FirstPage extends StatefulWidget {
@@ -23,28 +24,40 @@ class _FirstPageState extends State<FirstPage> {
     return GridView.builder(
       shrinkWrap: true, //解决无限高度问题
       physics: const NeverScrollableScrollPhysics(), //禁用滑动事件
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(//横向
         crossAxisCount: 4,
       ),
       itemCount:widget.menu.child[listIndex].child.length,
       itemBuilder: (BuildContext context, int index) {
         return _gridItemBuilder(
-            context, index, widget.menu.child[listIndex].child[index]);
+            context, listIndex, index, widget.menu.child[listIndex].child[index]);
       },
     );
   }
 
-  Widget _gridItemBuilder(BuildContext context, int index, Menu menu) {
+  Widget _gridItemBuilder(BuildContext context,int listIndex, int index, Menu menu) {
     //网格item布局
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      // SizedBox(
-      //     width: 35,
-      //     height: 35,
-      //     child:  Image.network(HttpOptions.kPicServer + menu.icon)),
-      ImageDefault(url: HttpOptions.kPicServer + menu.icon, w: 35, h: 35),//自定义图片控件，显示缺省图
-      const SizedBox(height: 10),
-      Text(menu.resName, maxLines: 1, overflow: TextOverflow.ellipsis)
-    ]);
+    return InkWell(
+      onTap: () {_clickGridItem(listIndex, index, menu);},
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        // SizedBox(
+        //     width: 35,
+        //     height: 35,
+        //     child:  Image.network(HttpOptions.kPicServer + menu.icon)),
+        ImageDefault(url: HttpOptions.kPicServer + menu.icon, w: 35, h: 35),//自定义图片控件，显示缺省图
+        const SizedBox(height: 10),
+        Text(menu.resName, maxLines: 1, overflow: TextOverflow.ellipsis)
+      ]),
+    );
+  }
+
+  void _clickGridItem(int listIndex, int itemIndex, Menu menu) {
+    print("$listIndex, $itemIndex");
+    print(menu.url);
+
+    if(menu.url == '/base/home/activity/grid_module_v2') {//次级九宫格页面，只有一层数据
+      Navigator.push(context, MaterialPageRoute(builder: (context) => SecondMenuPage(menu: menu)));
+    }
   }
 
   Widget _listViewBuilder() {

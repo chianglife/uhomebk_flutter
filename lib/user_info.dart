@@ -3,7 +3,7 @@ class UserInfo {
   static late String organId, organName, jobCommunityName, name, tel;
   static void save(Map<String, dynamic> json) {
     UserInfo.userId = json["userId"];
-    UserInfo.organId = json["organId"];
+    UserInfo.organId = json["organId"].toString();
     UserInfo.organName = json["organName"];
     UserInfo.jobCommunity = json["jobCommunity"];
     UserInfo.jobCommunityName = json["jobCommunityName"];

@@ -9,6 +9,7 @@ import 'package:uhomebk_flutter/http/http_utils.dart';
 import 'package:uhomebk_flutter/root_page.dart';
 import 'package:uhomebk_flutter/http/http.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:uhomebk_flutter/sign_in_page.dart';
 import 'package:uhomebk_flutter/user_info.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +21,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var _username = '15019419141';
-  var _password = 'Lxq123456';
+  // var _password = '5uYYGQmk';
+    var _password = 'Lxq123456~';
   late TextEditingController _usernameController;
   late TextEditingController _passwordcontroller;
   var dio = Dio();
@@ -195,7 +197,8 @@ class _LoginPageState extends State<LoginPage> {
       Map<String, dynamic> result = Map.from(response.data);
       UserInfo.save(result["data"]);//全局保存用户信息
       Http().setHeaders({"communityId" : UserInfo.jobCommunity});//请求头添加组织机构id
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => RootPage()), (route) => false);
+      //跳转到打卡页面，如果走菜单页面跳rootpage
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => SignInPage()), (route) => false);
     } 
   }
 }

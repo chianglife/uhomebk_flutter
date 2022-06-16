@@ -8,3 +8,6 @@ const kServer_storeList = "/wms-admin-api/rest-api/v1/common/getStoreList";
 const kServer_storeSetOrgan = "/wms-admin-api/rest-api/v1/common/queryStoreSetOrgan";
 //物料列表
 const kServer_getGoodsListNEW = "/wms-admin-api/rest-api/v1/common/getGoodsListNEW";
+
+//打卡接口
+const kServer_sumbitCheckingin = "/uhomecp-oa/checkinginCommon/sumbitCheckingin";

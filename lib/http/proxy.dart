@@ -2,7 +2,7 @@
 const PROXY_ENABLE = true;
 
 /// 代理服务IP
-const PROXY_IP = '192.168.20.92';
+const PROXY_IP = '192.168.20.36';
 
 /// 代理服务端口
 const PROXY_PORT = 8888;
