@@ -26,8 +26,8 @@ class HttpUtils {
     );
     print(response);
     return handleResponse(response);
-    } on HttpException catch (err) {
-      print(err.msg);
+    } on DioError catch (err) {
+      throw HttpException.create(err);
     }
     
   }
@@ -47,8 +47,8 @@ class HttpUtils {
       );
       print(response);
       return handleResponse(response);
-    } on HttpException catch (err) {
-      print(err.msg);
+    } on DioError catch (err) {
+      throw HttpException.create(err);
     }
   }
 
@@ -67,8 +67,8 @@ class HttpUtils {
       );
       print(response);
       return handleResponse(response);
-    } on HttpException catch (err) {
-      print(err.msg);
+    } on DioError catch (err) {
+      throw HttpException.create(err);
     }
   }
 
@@ -87,8 +87,8 @@ class HttpUtils {
       );
       print(response);
       return handleResponse(response);
-    } on HttpException catch (err) {
-      print(err.msg);
+    } on DioError catch (err) {
+      throw HttpException.create(err);
     }
   }
 

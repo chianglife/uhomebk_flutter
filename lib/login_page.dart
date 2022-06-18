@@ -2,9 +2,12 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:toast/toast.dart';
 import 'package:uhomebk_flutter/config/http_urls.dart';
 import 'package:uhomebk_flutter/config/seg_colors.dart';
 import 'package:uhomebk_flutter/http/http_cookie.dart';
+import 'package:uhomebk_flutter/http/http_exception.dart';
 import 'package:uhomebk_flutter/http/http_utils.dart';
 import 'package:uhomebk_flutter/root_page.dart';
 import 'package:uhomebk_flutter/http/http.dart';
@@ -36,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -185,10 +189,17 @@ class _LoginPageState extends State<LoginPage> {
     await (await HttpCookie.cookieJar).deleteAll();//删除之前的cookie
     print(Http().dio.interceptors.toList());
 
-    Response response = await HttpUtils.post(kServer_login,params: params);
-    if (response.statusCode == 0) {
-      requesUserInfo();//请求个人信息
-    } 
+    EasyLoading.show(status: "正在登录");
+    try {
+      Response response = await HttpUtils.post(kServer_login,params: params);
+      if (response.statusCode == 0) {
+        requesUserInfo();//请求个人信息
+      } 
+    } on HttpException catch(e) {
+      Toast.show(e.msg!, duration: Toast.lengthLong, gravity: Toast.bottom);
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 
   void requesUserInfo() async {
